@@ -1,6 +1,8 @@
+// src/Home.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import data from "../data.json";
 
 /* ICONS */
 const IconBroom = (props) => (
@@ -16,30 +18,30 @@ const IconWrench = (props) => (
 );
 
 const IconHammer = (props) => (
-  <svg {...props} viewBox="0 0 512 512">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <path d="M487.3 124.7l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-37.4 37.4 113.9 113.9 37.4-37.4c9.4-9.4 9.4-24.6 0-33.9z" />
   </svg>
 );
 
 const IconPaintRoller = (props) => (
-  <svg {...props} viewBox="0 0 512 512">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <path d="M464 128h-32c-17.7 0-32 14.3-32 32v192c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32z" />
   </svg>
 );
 
 const IconBug = (props) => (
-  <svg {...props} viewBox="0 0 512 512">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0z" />
   </svg>
 );
 
 const IconSearch = (props) => (
-  <svg {...props} viewBox="0 0 512 512">
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <path d="M416 208c0 45.9-14.9 88.3-40.8 122.7L502.8 459" />
   </svg>
 );
 
-/* DATA */
+/* CATEGORY DATA */
 const categories = [
   { label: "House Cleaning", icon: <IconBroom /> },
   { label: "Plumbing & Repairs", icon: <IconWrench />, path: "/plumbing" },
@@ -49,98 +51,97 @@ const categories = [
 ];
 
 export default function Home() {
+  const workers = data.workers; // ram + pooja from data.json
+
+  const ram = workers.find((w) => w.id === "ram");
+  const pooja = workers.find((w) => w.id === "pooja");
+
   return (
-    <div className="min-h-screen bg-[#f8f5ef]">
-      {/* HERO SECTION */}
-      <section
-        className="
-          container mx-auto 
-          px-4 sm:px-6 md:px-8 
-          pt-20 sm:pt-24 md:pt-32 
-          pb-16 sm:pb-20 md:pb-28 
-          rounded-2xl sm:rounded-3xl
-          relative
-        "
-      >
-        <div
-          className="
-            absolute inset-0 
-            rounded-2xl sm:rounded-3xl 
-            bg-[url('https://i.imgur.com/B5KfN1h.jpeg')] 
-            bg-cover bg-center bg-no-repeat
-          "
-        />
-        {/* Overlay for readability */}
-        <div className="relative z-10 backdrop-brightness-75/90 bg-black/30 p-5 sm:p-7 md:p-10 rounded-2xl sm:rounded-3xl">
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            Karyam
-          </motion.h1>
-
-          <motion.h2
-            className="
-              mt-3 
-              text-base sm:text-lg md:text-2xl lg:text-3xl 
-              font-semibold text-[#FFF6AA] 
-              max-w-xl
-            "
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            Connecting hardworking skilled workers with local job opportunities.
-          </motion.h2>
-
-          <motion.div
-            className="mt-6 sm:mt-8 space-y-3 sm:space-y-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
-            <p className="text-white text-sm sm:text-base md:text-lg max-w-lg">
-              Find trusted workers for cleaning, repairs, and daily help.
-            </p>
-
-            <p className="text-white text-sm sm:text-base md:text-lg max-w-lg">
-              OR — If you have a skill, start earning today.
-            </p>
-
-            <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
-              <Link
-                to="/search"
-                className="
-                  w-full sm:w-auto text-center
-                  px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 
-                  text-sm sm:text-base md:text-lg 
-                  font-bold bg-blue-500 text-white 
-                  rounded-xl hover:bg-blue-600 
-                  transition shadow-xl
-                "
+    <div className="min-h-screen bg-[#f8f5ef] overflow-x-hidden font-sans">
+      {/* HERO SECTION (unchanged) */}
+      <section className="relative">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8">
+          <div className="relative mt-16 sm:mt-20 md:mt-24 mb-12 sm:mb-16 md:mb-20">
+            <div
+              className="
+                absolute inset-0 
+                rounded-2xl sm:rounded-3xl 
+                bg-[url('https://i.imgur.com/B5KfN1h.jpeg')] 
+                bg-cover bg-center bg-no-repeat
+              "
+            />
+            <div className="relative z-10 backdrop-brightness-75/90 bg-black/40 p-5 sm:p-7 md:p-10 rounded-2xl sm:rounded-3xl">
+              <motion.h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
               >
-                Find a Worker Near You
-              </Link>
+                Karyam
+              </motion.h1>
 
-              <Link
-                to="/signup"
+              <motion.h2
                 className="
-                  w-full sm:w-auto text-center
-                  px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 
-                  text-sm sm:text-base md:text-lg 
-                  font-bold bg-orange-400 text-gray-900 
-                  rounded-xl hover:bg-orange-500 
-                  transition shadow-xl
+                  mt-3 
+                  text-base sm:text-lg md:text-2xl lg:text-3xl 
+                  font-semibold text-[#FFF6AA] 
+                  max-w-xl
                 "
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
               >
-                I Want Work
-              </Link>
+                Connecting hardworking skilled workers with local job opportunities.
+              </motion.h2>
+
+              <motion.div
+                className="mt-6 sm:mt-8 space-y-3 sm:space-y-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                <p className="text-white text-sm sm:text-base md:text-lg max-w-lg">
+                  Find trusted workers for cleaning, repairs, and daily help.
+                </p>
+
+                <p className="text-white text-sm sm:text-base md:text-lg max-w-lg">
+                  OR — If you have a skill, start earning today.
+                </p>
+
+                <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+                  <Link
+                    to="/search"
+                    className="
+                      w-full sm:w-auto text-center
+                      px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 
+                      text-sm sm:text-base md:text-lg 
+                      font-bold bg-blue-500 text-white 
+                      rounded-xl hover:bg-blue-600 
+                      transition shadow-xl
+                    "
+                  >
+                    Find a Worker Near You
+                  </Link>
+
+                  <Link
+                    to="/signup"
+                    className="
+                      w-full sm:w-auto text-center
+                      px-4 py-3 sm:px-6 sm:py-3.5 md:px-8 md:py-4 
+                      text-sm sm:text-base md:text-lg 
+                      font-bold bg-orange-400 text-gray-900 
+                      rounded-xl hover:bg-orange-500 
+                      transition shadow-xl
+                    "
+                  >
+                    I Want Work
+                  </Link>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* POPULAR SKILLS */}
-      <section className="container mx-auto px-4 sm:px-6 md:px-8 mt-12 sm:mt-16 md:mt-20">
+      {/* POPULAR SKILLS (unchanged) */}
+      <section className="container mx-auto px-4 sm:px-6 md:px-8 mt-4 sm:mt-6 md:mt-8">
         <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 sm:mb-10 md:mb-12">
           Popular Skills
         </h2>
@@ -160,7 +161,8 @@ export default function Home() {
             >
               <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#FFF6AA] rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow">
                 {React.cloneElement(c.icon, {
-                  className: "w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 fill-gray-900",
+                  className:
+                    "w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 fill-gray-900",
                 })}
               </div>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-800 text-center">
@@ -171,7 +173,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SEARCH SECTION */}
+      {/* SEARCH SECTION (unchanged) */}
       <section className="mt-14 sm:mt-16 md:mt-24 container mx-auto px-4 sm:px-6 md:px-8">
         <motion.div
           className="
@@ -233,7 +235,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* TRUSTED WORKERS */}
+      {/* TRUSTED WORKERS (uses data.json + routes /workers/:id) */}
       <section className="mt-16 sm:mt-20 md:mt-24 pb-16 sm:pb-20 md:pb-24 container mx-auto px-4 sm:px-6 md:px-8">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-800 mb-2 sm:mb-3">
           Trusted Local Workers
@@ -243,40 +245,68 @@ export default function Home() {
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-          <motion.div
-            className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-orange-400 text-center"
-            whileHover={{ y: -5 }}
-          >
-            <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">🧑‍🔧</div>
-            <h3 className="text-base sm:text-lg md:text-xl font-bold">Ram V.</h3>
-            <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
-              Plumber & Electrician
-            </p>
-            <div className="px-3 py-1 bg-green-200 text-green-800 rounded-full text-[10px] sm:text-xs md:text-sm mb-5 sm:mb-6 inline-block">
-              5+ Years Experience
-            </div>
-            <Link className="text-blue-600 font-medium text-xs sm:text-sm md:text-base" to="/ram">
-              View Profile
-            </Link>
-          </motion.div>
+          {/* Ram card */}
+          {ram && (
+            <motion.div
+              className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-orange-400 text-center"
+              whileHover={{ y: -5 }}
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
+                {ram.emoji}
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                {ram.shortName}
+              </h3>
+              <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
+                {ram.role}
+              </p>
+              <div className="flex items-center justify-center gap-2 mb-5 sm:mb-6">
+                <span className="px-3 py-1 bg-green-200 text-green-800 rounded-full text-[10px] sm:text-xs md:text-sm">
+                  {ram.experienceLabel}
+                </span>
+                {ram.bisCertified && (
+                  <span className="px-3 py-1 bg-blue-100 text-blue-800 border border-blue-300 rounded-full text-[10px] sm:text-xs md:text-sm">
+                    BIS Certified
+                  </span>
+                )}
+              </div>
+              <Link
+                className="text-blue-600 font-medium text-xs sm:text-sm md:text-base underline"
+                to={`/workers/${ram.id}`}
+              >
+                View Profile
+              </Link>
+            </motion.div>
+          )}
 
-          <motion.div
-            className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-blue-400 text-center"
-            whileHover={{ y: -5 }}
-          >
-            <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">👷‍♀️</div>
-            <h3 className="text-base sm:text-lg md:text-xl font-bold">Pooja S.</h3>
-            <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
-              Cleaner & Cook
-            </p>
-            <div className="px-3 py-1 bg-orange-200 text-orange-800 rounded-full text-[10px] sm:text-xs md:text-sm mb-5 sm:mb-6 inline-block">
-              Verified Talent
-            </div>
-            <Link className="text-blue-600 font-medium text-xs sm:text-sm md:text-base" to="#">
-              View Profile
-            </Link>
-          </motion.div>
+          {/* Pooja card */}
+          {pooja && (
+            <motion.div
+              className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-blue-400 text-center"
+              whileHover={{ y: -5 }}
+            >
+              <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
+                {pooja.emoji}
+              </div>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                {pooja.shortName}
+              </h3>
+              <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
+                {pooja.role}
+              </p>
+              <div className="px-3 py-1 bg-orange-200 text-orange-800 rounded-full text-[10px] sm:text-xs md:text-sm mb-5 sm:mb-6 inline-block">
+                {pooja.experienceLabel}
+              </div>
+              <Link
+                className="text-blue-600 font-medium text-xs sm:text-sm md:text-base underline"
+                to={`/workers/${pooja.id}`}
+              >
+                View Profile
+              </Link>
+            </motion.div>
+          )}
 
+          {/* CTA card stays same */}
           <motion.div
             className="bg-blue-50 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border-2 border-blue-300 border-dashed text-center"
             whileHover={{ scale: 1.05 }}

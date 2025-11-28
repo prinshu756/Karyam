@@ -1,0 +1,62 @@
+{
+  "workers": [
+    {
+      "id": "ram",
+      "shortName": "Ram V.",
+      "fullName": "Ram Verma",
+      "role": "Plumber & Electrician",
+      "experienceLabel": "5+ Years Experience",
+      "location": "Sejbahar",
+      "bisCertified": true,
+      "about": "Reliable plumber and electrician for home repairs, installations and maintenance.",
+      "emoji": "🧑‍🔧",
+      "badgeColor": "orange",
+      "reviews": [
+        {
+          "id": 1,
+          "author": "Akash",
+          "rating": 5,
+          "text": "Fast, clean work and very polite."
+        },
+        {
+          "id": 2,
+          "author": "Sumit",
+          "rating": 4,
+          "text": "Fixed our leakage in one visit."
+        }
+      ]
+    },
+    {
+      "id": "pooja",
+      "shortName": "Pooja S.",
+      "fullName": "Pooja Sharma",
+      "role": "Cleaner & Cook",
+      "experienceLabel": "Verified Talent",
+      "location": "Datarenga",
+      "bisCertified": false,
+      "about": "Helps with daily home cleaning and vegetarian cooking on a regular basis.",
+      "emoji": "👷‍♀️",
+      "badgeColor": "blue",
+      "reviews": [
+        {
+          "id": 1,
+          "author": "Rohan",
+          "rating": 5,
+          "text": "Very punctual and reliable."
+        },
+        {
+          "id": 2,
+          "author": "Sara",
+          "rating": 5,
+          "text": "Home is always spotless and tidy."
+        },
+        {
+            "id" : 3,
+            "author": "Neha",
+            "rating": 4,
+            "text": "Bhindi ki sabji bekar banati hai, baaki sab theek hai."
+        }
+      ]
+    }
+  ]
+}
