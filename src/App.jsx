@@ -7,6 +7,7 @@ import Categories from "./components/Categories";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import WorkerRoutes from "./WokerRoutes";
+import AIAssistant from "./components/AIAssistant";
 
 export default function App() {
   return (

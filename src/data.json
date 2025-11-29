@@ -5,6 +5,7 @@
       "shortName": "Ram V.",
       "fullName": "Ram Verma",
       "role": "Plumber & Electrician",
+      "skills": ["Plumbing", "Electrician"],
       "experienceLabel": "5+ Years Experience",
       "location": "Sejbahar",
       "bisCertified": true,
@@ -12,18 +13,9 @@
       "emoji": "🧑‍🔧",
       "badgeColor": "orange",
       "reviews": [
-        {
-          "id": 1,
-          "author": "Akash",
-          "rating": 5,
-          "text": "Fast, clean work and very polite."
-        },
-        {
-          "id": 2,
-          "author": "Sumit",
-          "rating": 4,
-          "text": "Fixed our leakage in one visit."
-        }
+        { "id": 1, "author": "Akash", "rating": 5, "text": "Fast, clean work and very polite." },
+        { "id": 2, "author": "Sumit", "rating": 4, "text": "Fixed our leakage in one visit." },
+        { "id": 3, "author": "Aman", "rating": 5, "text": "Great wiring work, highly recommended." }
       ]
     },
     {
@@ -31,31 +23,377 @@
       "shortName": "Pooja S.",
       "fullName": "Pooja Sharma",
       "role": "Cleaner & Cook",
+      "skills": ["House Cleaning", "Cooking"],
       "experienceLabel": "Verified Talent",
       "location": "Datarenga",
       "bisCertified": false,
       "about": "Helps with daily home cleaning and vegetarian cooking on a regular basis.",
-      "emoji": "👷‍♀️",
+      "emoji": "👷‍♀",
       "badgeColor": "blue",
       "reviews": [
-        {
-          "id": 1,
-          "author": "Rohan",
-          "rating": 5,
-          "text": "Very punctual and reliable."
-        },
-        {
-          "id": 2,
-          "author": "Sara",
-          "rating": 5,
-          "text": "Home is always spotless and tidy."
-        },
-        {
-            "id" : 3,
-            "author": "Neha",
-            "rating": 4,
-            "text": "Bhindi ki sabji bekar banati hai, baaki sab theek hai."
-        }
+        { "id": 1, "author": "Rohan", "rating": 5, "text": "Very punctual and reliable." },
+        { "id": 2, "author": "Sara", "rating": 5, "text": "Home is always spotless and tidy." },
+        { "id": 3, "author": "Neha", "rating": 4, "text": "Bhindi ki scdvzsvznati hai, baaki sab theek hai." },
+        { "id": 4, "author": "Kiran", "rating": 5, "text": "Excellent at deep cleaning bathrooms." }
+      ]
+    },
+    {
+      "id": "aman",
+      "shortName": "Aman K.",
+      "fullName": "Aman Kashyap",
+      "role": "Carpenter",
+      "skills": ["Woodwork", "Carpentry", "Furniture Repair"],
+      "experienceLabel": "8+ Years Experience",
+      "location": "Mana Camp",
+      "bisCertified": true,
+      "about": "Expert in furniture repair, modular kitchen installation and custom carpentry.",
+      "emoji": "🪚",
+      "badgeColor": "green",
+      "reviews": [
+        { "id": 1, "author": "Deepak", "rating": 5, "text": "Built a strong wardrobe. Perfect finishing!" },
+        { "id": 2, "author": "Sneha", "rating": 4, "text": "Slight delay but high quality work." }
+      ]
+    },
+    {
+      "id": "lakshya",
+      "shortName": "Lakshya S.",
+      "fullName": "Lakshya Sahu",
+      "role": "Home Cook",
+      "skills": ["Cooking", "North Indian Cuisine"],
+      "experienceLabel": "7+ Years Experience",
+      "location": "Amleshwar",
+      "bisCertified": false,
+      "about": "Specializes in North Indian home-style meals, tiffin services, and small event catering.",
+      "emoji": "👩‍🍳",
+      "badgeColor": "pink",
+      "reviews": [
+        { "id": 1, "author": "Mukesh", "rating": 5, "text": "Food tastes like home, amazing rotis!" },
+        { "id": 2, "author": "Payal", "rating": 4, "text": "Good taste, but sometimes delayed." }
+      ]
+    },
+    {
+      "id": "suresh",
+      "shortName": "Suresh D.",
+      "fullName": "Suresh Dewangan",
+      "role": "AC Mechanic",
+      "skills": ["AC Repair", "AC Installation", "Gas Refilling"],
+      "experienceLabel": "10+ Years Experience",
+      "location": "Raipur City",
+      "bisCertified": true,
+      "about": "AC installation, gas refilling, cooling issues and regular servicing.",
+      "emoji": "❄",
+      "badgeColor": "teal",
+      "reviews": [
+        { "id": 1, "author": "Harshit", "rating": 5, "text": "AC cooling restored in 20 minutes. Expert!" },
+        { "id": 2, "author": "Aarti", "rating": 3, "text": "Good service but a bit expensive." },
+        { "id": 3, "author": "Ritesh", "rating": 4, "text": "Quick installation, neat work." }
+      ]
+    },
+    {
+      "id": "jyoti",
+      "shortName": "Jyoti T.",
+      "fullName": "Jyoti Tiwari",
+      "role": "Babysitter",
+      "skills": ["Babysitting", "Childcare", "First Aid"],
+      "experienceLabel": "Certified Childcare",
+      "location": "Saddu",
+      "bisCertified": true,
+      "about": "Trained babysitter with first-aid knowledge, available for daily and hourly care.",
+      "emoji": "👶",
+      "badgeColor": "purple",
+      "reviews": [
+        { "id": 1, "author": "Nisha", "rating": 5, "text": "Very caring and patient with kids." },
+        { "id": 2, "author": "Ravina", "rating": 5, "text": "My child loves her. Very trustworthy." }
+      ]
+    },
+    {
+      "id": "vikram",
+      "shortName": "Vikram J.",
+      "fullName": "Vikram Jaiswal",
+      "role": "Painter",
+      "skills": ["Painting", "Interior Painting", "Wall Treatment"],
+      "experienceLabel": "6+ Years Experience",
+      "location": "Telibandha",
+      "bisCertified": false,
+      "about": "Professional house painter specializing in smooth finishes and modern wall textures.",
+      "emoji": "🎨",
+      "badgeColor": "red",
+      "reviews": [
+        { "id": 1, "author": "Ashish", "rating": 5, "text": "Great color matching and very neat work." },
+        { "id": 2, "author": "Megha", "rating": 4, "text": "Finished the living room ahead of schedule." }
+      ]
+    },
+    {
+      "id": "riya",
+      "shortName": "Riya P.",
+      "fullName": "Riya Patel",
+      "role": "Beautician",
+      "skills": ["Beauty", "Facial", "Hair Styling", "Waxing"],
+      "experienceLabel": "Verified Professional",
+      "location": "Civil Lines",
+      "bisCertified": false,
+      "about": "Providing relaxing and high-quality beauty services at your home, specializing in bridal packages.",
+      "emoji": "💄",
+      "badgeColor": "fuchsia",
+      "reviews": [
+        { "id": 1, "author": "Neha", "rating": 5, "text": "Excellent deep tissue facial. Highly recommended." },
+        { "id": 2, "author": "Divya", "rating": 5, "text": "Very hygienic and professional service." },
+        { "id": 3, "author": "Seema", "rating": 4, "text": "Friendly and skilled." }
+      ]
+    },
+    {
+      "id": "karan",
+      "shortName": "Karan S.",
+      "fullName": "Karan Singh",
+      "role": "Pest Control Specialist",
+      "skills": ["Pest Control", "Termite Treatment", "Rodent Control"],
+      "experienceLabel": "7+ Years Experience",
+      "location": "Shankar Nagar",
+      "bisCertified": true,
+      "about": "Expert and safe pest management solutions for residential and small commercial spaces.",
+      "emoji": "🐜",
+      "badgeColor": "brown",
+      "reviews": [
+        { "id": 1, "author": "Rajiv", "rating": 5, "text": "Solved the cockroach problem permanently." },
+        { "id": 2, "author": "Pankaj", "rating": 5, "text": "Quick response and effective treatment." }
+      ]
+    },
+    {
+      "id": "sunita",
+      "shortName": "Sunita K.",
+      "fullName": "Sunita Kumar",
+      "role": "Gardener & Landscaper",
+      "skills": ["Gardening", "Landscaping", "Planting", "Lawn Care"],
+      "experienceLabel": "15+ Years Experience",
+      "location": "Mohaba Bazar",
+      "bisCertified": false,
+      "about": "Veteran gardener offering services from regular lawn mowing to full-scale garden design.",
+      "emoji": "🌿",
+      "badgeColor": "lime",
+      "reviews": [
+        { "id": 1, "author": "Mr. Sharma", "rating": 5, "text": "The best gardener in the locality. Very knowledgeable." },
+        { "id": 2, "author": "Mrs. Ray", "rating": 4, "text": "Reliable monthly service." }
+      ]
+    },
+    {
+      "id": "gopal",
+      "shortName": "Gopal R.",
+      "fullName": "Gopal Rajput",
+      "role": "General Repairman",
+      "skills": ["General Repair", "Plumbing", "Electrical"],
+      "experienceLabel": "4+ Years Experience",
+      "location": "Devendra Nagar",
+      "bisCertified": false,
+      "about": "Jack-of-all-trades for minor household fixes, including simple plumbing and electrical issues.",
+      "emoji": "🛠️",
+      "badgeColor": "gray",
+      "reviews": [
+        { "id": 1, "author": "Samir", "rating": 5, "text": "Fixed three small problems quickly and efficiently." },
+        { "id": 2, "author": "Kavita", "rating": 4, "text": "Polite and solved the issue." }
+      ]
+    },
+    {
+      "id": "shanti",
+      "shortName": "Shanti B.",
+      "fullName": "Shanti Barik",
+      "role": "Deep Cleaner",
+      "skills": ["House Cleaning", "Deep Cleaning", "Carpet Cleaning"],
+      "experienceLabel": "3+ Years Experience",
+      "location": "New Rajendra Nagar",
+      "bisCertified": false,
+      "about": "Specializes in deep cleaning homes, apartments, and post-event cleanup.",
+      "emoji": "🧼",
+      "badgeColor": "cyan",
+      "reviews": [
+        { "id": 1, "author": "Anjali", "rating": 5, "text": "Unbelievable results for kitchen deep cleaning." },
+        { "id": 2, "author": "Ravi", "rating": 5, "text": "House felt completely new after her service." }
+      ]
+    },
+    {
+      "id": "manoj",
+      "shortName": "Manoj S.",
+      "fullName": "Manoj Singh",
+      "role": "Tutor",
+      "skills": ["Tutoring", "Math", "Science", "Online Education"],
+      "experienceLabel": "8+ Years Experience",
+      "location": "Gondwara",
+      "bisCertified": true,
+      "about": "Experienced tutor for middle and high school students in Mathematics and Science, available for home and online sessions.",
+      "emoji": "👨‍🏫",
+      "badgeColor": "indigo",
+      "reviews": [
+        { "id": 1, "author": "Priya", "rating": 5, "text": "My son's math scores improved significantly." },
+        { "id": 2, "author": "Raj", "rating": 5, "text": "Patient and explains complex concepts clearly." }
+      ]
+    },
+    {
+      "id": "neha",
+      "shortName": "Neha K.",
+      "fullName": "Neha Khatri",
+      "role": "Data Entry & Virtual Assistant",
+      "skills": ["Data Entry", "Virtual Assistant", "Excel", "Typing"],
+      "experienceLabel": "Verified Remote Talent",
+      "location": "Fafadih (Remote)",
+      "bisCertified": false,
+      "about": "Efficient virtual assistant for data entry, document formatting, and general administrative support (available remotely).",
+      "emoji": "💻",
+      "badgeColor": "sky",
+      "reviews": [
+        { "id": 1, "author": "Amit", "rating": 5, "text": "Fast and accurate data processing." },
+        { "id": 2, "author": "Sonali", "rating": 4, "text": "Great communication for remote work." }
+      ]
+    },
+    {
+      "id": "pradeep",
+      "shortName": "Pradeep M.",
+      "fullName": "Pradeep Mourya",
+      "role": "Electrician",
+      "skills": ["Electrician", "Home Wiring", "Inverter Installation"],
+      "experienceLabel": "7+ Years Experience",
+      "location": "Pachpedi Naka",
+      "bisCertified": true,
+      "about": "Fully certified electrician for new home wiring, fixture installation, and urgent power failures.",
+      "emoji": "💡",
+      "badgeColor": "yellow",
+      "reviews": [
+        { "id": 1, "author": "Vikas", "rating": 5, "text": "Installed the new chandelier perfectly." },
+        { "id": 2, "author": "Ritu", "rating": 5, "text": "Very reliable service, even late at night." }
+      ]
+    },
+    {
+      "id": "divya",
+      "shortName": "Divya G.",
+      "fullName": "Divya Gupta",
+      "role": "Yoga Instructor",
+      "skills": ["Yoga", "Fitness", "Meditation", "Prenatal Yoga"],
+      "experienceLabel": "Certified Instructor",
+      "location": "Chawk",
+      "bisCertified": false,
+      "about": "Experienced Yoga and fitness trainer offering personalized home sessions and small group classes.",
+      "emoji": "🧘‍♀️",
+      "badgeColor": "pink-dark",
+      "reviews": [
+        { "id": 1, "author": "Asha", "rating": 5, "text": "Great focus on alignment and breathing." },
+        { "id": 2, "author": "Nitin", "rating": 4, "text": "Sessions are challenging yet relaxing." }
+      ]
+    },
+    {
+      "id": "mukesh",
+      "shortName": "Mukesh R.",
+      "fullName": "Mukesh Rajak",
+      "role": "Washing Machine Repair",
+      "skills": ["Washing Machine Repair", "Appliance Repair", "Microwave Repair"],
+      "experienceLabel": "9+ Years Experience",
+      "location": "Purani Basti",
+      "bisCertified": true,
+      "about": "Specialist in all brands of washing machines and other common kitchen appliances repair.",
+      "emoji": "🧺",
+      "badgeColor": "navy",
+      "reviews": [
+        { "id": 1, "author": "Ramesh", "rating": 5, "text": "Fixed the machine same day. Excellent knowledge." },
+        { "id": 2, "author": "Geeta", "rating": 5, "text": "Very fair pricing and professional." }
+      ]
+    },
+    {
+      "id": "sandeep",
+      "shortName": "Sandeep T.",
+      "fullName": "Sandeep Thakur",
+      "role": "Car Cleaner",
+      "skills": ["Car Cleaning", "Car Washing", "Interior Detailing"],
+      "experienceLabel": "Verified Team Leader",
+      "location": "Kota",
+      "bisCertified": false,
+      "about": "Provides comprehensive doorstep car cleaning, washing, and deep interior vacuuming/detailing.",
+      "emoji": "🚗",
+      "badgeColor": "silver",
+      "reviews": [
+        { "id": 1, "author": "Arvind", "rating": 5, "text": "My car looks brand new after the detail!" },
+        { "id": 2, "author": "Preeti", "rating": 4, "text": "Always on time for the morning wash." }
+      ]
+    },
+    {
+      "id": "shubham",
+      "shortName": "Shubham K.",
+      "fullName": "Shubham Kushwaha",
+      "role": "Locksmith",
+      "skills": ["Locksmith", "Key Duplication", "Door Repair"],
+      "experienceLabel": "5+ Years Experience",
+      "location": "Amlidih",
+      "bisCertified": true,
+      "about": "Emergency locksmith services, broken key extraction, new lock installation, and security upgrades.",
+      "emoji": "🔑",
+      "badgeColor": "steel",
+      "reviews": [
+        { "id": 1, "author": "Tarun", "rating": 5, "text": "Got me back into my house in minutes." },
+        { "id": 2, "author": "Hemant", "rating": 5, "text": "Fast service, very professional." }
+      ]
+    },
+    {
+      "id": "Ayush",
+      "shortName": "Ayush Y.",
+      "fullName": "Ayush Yadav",
+      "role": "Milkman",
+      "skills": ["Milk Delivery", "Dairy Products"],
+      "experienceLabel": "5+ Years Experience",
+      "location": "Sejbahar",
+      "bisCertified": false,
+      "about": "Reliable milk delivery service with fresh dairy products delivered to your doorstep.",
+      "emoji": "🥛",
+      "badgeColor": "steel",
+      "reviews": [
+        { "id": 1, "author": "Tarun", "rating": 5, "text": "Got me back into my house in minutes." },
+        { "id": 2, "author": "Hemant", "rating": 5, "text": "Fast service, very professional." }
+      ]
+    },
+    {
+      "id": "Shiva",
+      "shortName": "Shiva P.",
+      "fullName": "Shiva Pandey",
+      "role": "Milkman",
+      "skills": ["Milk Delivery", "Dairy Products"],
+      "experienceLabel": "2+ Years Experience",
+      "location": "Sejbahar",
+      "bisCertified": false,
+      "about": "Reliable milk delivery service with fresh dairy products delivered to your doorstep.",
+      "emoji": "🥛",
+      "badgeColor": "steel",
+      "reviews": [
+        { "id": 1, "author": "Tarkeshwar", "rating": 5, "text": "Bohot gadha or achcha dudh rehta hai iska" },
+        { "id": 2, "author": "Gunjan", "rating": 5, "text": "Best milk in the world" }
+      ]
+    },
+    {
+      "id": "Devendra",
+      "shortName": "Devendra V.",
+      "fullName": "Devendra Vishwakarma",
+      "role": "Gardener",
+      "skills": ["Gardening", "Landscaping"],
+      "experienceLabel": "5+ Years Experience",
+      "location": "Sejbahar",
+      "bisCertified": false,
+      "about": "Reliable gardening and landscaping services to beautify your outdoor spaces.",
+      "emoji": "🌿",
+      "badgeColor": "steel",
+      "reviews": [
+        { "id": 1, "author": "Tarun", "rating": 5, "text": "Got me back into my house in minutes." },
+        { "id": 2, "author": "Hemant", "rating": 5, "text": "Fast service, very professional." }
+      ]
+    },
+    {
+      "id": "Tarkeshwar",
+      "shortName": "Tarkeshwar S.",
+      "fullName": "Tarkeshwar Sharma",
+      "role": "Beauty Specialist",
+      "skills": ["Beauty", "Cosmetology"],
+      "experienceLabel": "5+ Years Experience",
+      "location": "Sejbahar",
+      "bisCertified": false,
+      "about": "Reliable milk delivery service with fresh dairy products delivered to your doorstep.",
+      "emoji": "💄",
+      "badgeColor": "steel",
+      "reviews": [
+        { "id": 1, "author": "Tarun", "rating": 5, "text": "Got me back into my house in minutes." },
+        { "id": 2, "author": "Hemant", "rating": 5, "text": "Fast service, very professional." }
       ]
     }
   ]

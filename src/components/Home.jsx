@@ -1,7 +1,7 @@
 // src/Home.jsx
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import data from "../data.json";
 
 /* ICONS */
@@ -35,30 +35,238 @@ const IconBug = (props) => (
   </svg>
 );
 
+const IconChef = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M504 256C504 119 392 8 256 8S8 119 8 256c0 137 112 248 248 248s248-111 248-248zm-248 96c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm48-96c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm-96 0c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm96 48c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z"/>
+  </svg>
+);
+
+const IconBaby = (props) => (
+  <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <path d="M256 32c-124 0-224 100-224 224s100 224 224 224 224-100 224-224-100-224-224-224zm-96 288h-32v-96h-32v-64h192v64h-32v96h-32v-96h-32v96z"/>
+  </svg>
+);
+
 const IconSearch = (props) => (
   <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
     <path d="M416 208c0 45.9-14.9 88.3-40.8 122.7L502.8 459" />
   </svg>
 );
 
-/* CATEGORY DATA */
 const categories = [
   { label: "House Cleaning", icon: <IconBroom /> },
-  { label: "Plumbing & Repairs", icon: <IconWrench />, path: "/plumbing" },
-  { label: "Woodwork & Building", icon: <IconHammer /> },
-  { label: "Wall Painting", icon: <IconPaintRoller /> },
-  { label: "Pest Control", icon: <IconBug /> },
+  { label: "Plumbing", icon: <IconWrench />, path: "/plumbing" },
+  { label: "Electrician", icon: <IconWrench /> },
+  { label: "Woodwork", icon: <IconHammer /> },
+  { label: "Cooking", icon: <IconChef /> },
+  { label: "Babysitting", icon: <IconBaby /> },
 ];
 
-export default function Home() {
-  const workers = data.workers; // ram + pooja from data.json
+/* AI ASSISTANT COMPONENT */
+const AIAssistant = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    {
+      id: "1",
+      text: "Hi! I'm Karyam AI 🤖 Ask me about workers or services! Try: 'plumber', 'cleaner', 'carpenter'",
+      isUser: false,
+      timestamp: new Date(),
+    },
+  ]);
+  const [inputValue, setInputValue] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef(null);
 
-  const ram = workers.find((w) => w.id === "ram");
-  const pooja = workers.find((w) => w.id === "pooja");
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const predefinedResponses = {
+    plumber: "🧑‍🔧 Ram V. in Sejbahar is a trusted plumber with 5+ years experience and BIS Certified!",
+    cleaner: "👷‍♀️ Pooja S. in Datarenga is a skilled cleaner and cook. Verified talent!",
+    carpenter: "🪚 Aman K. is our expert carpenter with 8+ years experience in Mana Camp.",
+    cook: "👩‍🍳 Anita P. specializes in home cooking and tiffin services in Amleshwar.",
+    babysitter: "👶 Jyoti T. is a certified babysitter from Saddu with BIS certification.",
+    how: "Browse categories → View profiles → Contact workers → Book your service easily!",
+    join: "Click 'I Want Work' or go to signup to list your skills and start earning today!",
+  };
+
+  const sendMessage = () => {
+    if (!inputValue.trim()) return;
+
+    const userMessage = {
+      id: Date.now().toString(),
+      text: inputValue,
+      isUser: true,
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInputValue("");
+    setIsTyping(true);
+
+    setTimeout(() => {
+      const key = inputValue.toLowerCase().trim();
+      const response = predefinedResponses[key] || 
+        "Sorry, I didn't get that. Please try asking about services like 'plumber', 'cleaner' or 'how to join'.";
+      const aiMessage = {
+        id: (Date.now() + 1).toString(),
+        text: response,
+        isUser: false,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, aiMessage]);
+      setIsTyping(false);
+    }, Math.random() * 1200 + 600);
+  };
 
   return (
-    <div className="min-h-screen bg-[#f8f5ef] overflow-x-hidden font-sans">
-      {/* HERO SECTION (unchanged) */}
+    <>
+      {/* Floating AI icon button */}
+      <motion.button
+        className="
+          fixed bottom-6 right-6 
+          w-14 h-14 sm:w-16 sm:h-16 
+          bg-linear-to-r from-purple-500 to-pink-500 
+          rounded-2xl shadow-2xl border-4 border-white/90
+          flex items-center justify-center text-xl shadow-purple-500/50
+          hover:shadow-purple-500/75 hover:scale-110 active:scale-95
+          z-50 cursor-pointer transition-all duration-300
+          lg:bottom-8 lg:right-8
+        "
+        onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        animate={{ rotate: isOpen ? 180 : 0 }}
+        transition={{ rotate: { duration: 0.4 } }}
+        aria-label="Open AI Assistant Chat"
+      >
+        🤖
+      </motion.button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="
+              fixed bottom-24 right-6 sm:right-8 lg:right-12 w-80 sm:w-96 
+              max-h-[450px] bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl border 
+              border-gray-200/50 overflow-hidden z-50
+              lg:bottom-28 
+            "
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+            transition={{ duration: 0.25 }}
+          >
+            <div className="bg-linear-to-r from-purple-500 to-pink-500 px-5 py-3 text-white">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-white/20 rounded-xl flex items-center justify-center">
+                  🤖
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm">Karyam AI</h4>
+                  <p className="text-xs opacity-90">Ask me about workers or services!</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="h-[280px] overflow-y-auto p-4 space-y-3 bg-linear-to-b from-gray-50 to-white scrollbar-thin scrollbar-thumb-gray-400">
+              {messages.map((message) => (
+                <motion.div
+                  key={message.id}
+                  className={`flex ${message.isUser ? "justify-end" : "justify-start"}`}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div
+                    className={`
+                      max-w-[80%] p-3 rounded-xl shadow-md text-sm
+                      ${message.isUser
+                        ? "bg-linear-to-r from-blue-500 to-blue-600 text-white rounded-br-sm"
+                        : "bg-white border rounded-bl-sm"
+                      }
+                    `}
+                  >
+                    <p style={{ whiteSpace: "pre-line" }}>{message.text}</p>
+                    <p className="text-xs opacity-75 mt-1">
+                      {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="bg-white border p-3 rounded-xl shadow-md flex items-center gap-2">
+                    <div className="flex gap-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                    </div>
+                    <span className="text-xs text-gray-500">Typing...</span>
+                  </div>
+                </div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+
+            <div className="p-4 border-t bg-white">
+              <div className="flex gap-2">
+                <input
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && sendMessage()}
+                  placeholder="Ask about 'plumber', 'cleaner'..."
+                  className="flex-1 px-3 py-2 border rounded-xl focus:outline-none focus:border-blue-400 text-sm"
+                  disabled={isTyping}
+                />
+                <motion.button
+                  onClick={sendMessage}
+                  disabled={!inputValue.trim() || isTyping}
+                  className="w-10 h-10 bg-purple-500 text-white rounded-xl flex items-center justify-center disabled:opacity-50"
+                  whileHover={{ scale: 1.05 }}
+                  aria-label="Send message"
+                >
+                  ➤
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+// Main Home component unchanged except AIAssistant inserted at end
+export default function Home() {
+  const workers = data.workers || [];
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
+  const filteredWorkers = selectedSkill
+    ? workers.filter((w) => w.skills?.some((skill) => skill === selectedSkill))
+    : [];
+
+  const highlightedWorkers = workers.slice(0, 6);
+
+  const getBorderClass = (color) => {
+    const colors = {
+      orange: "border-orange-400",
+      blue: "border-blue-400",
+      green: "border-green-400",
+      pink: "border-pink-400",
+      teal: "border-teal-400",
+      purple: "border-purple-400",
+    };
+    return colors[color] || "border-gray-400";
+  };
+
+  return (
+    <div className="min-h-screen bg-[#f8f5ef] overflow-x-hidden font-sans relative">
+      {/* HERO SECTION */}
       <section className="relative">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
           <div className="relative mt-16 sm:mt-20 md:mt-24 mb-12 sm:mb-16 md:mb-20">
@@ -66,7 +274,7 @@ export default function Home() {
               className="
                 absolute inset-0 
                 rounded-2xl sm:rounded-3xl 
-                bg-[url('https://i.imgur.com/B5KfN1h.jpeg')] 
+                bg-[url('src/assets/BgKaryam.jpg')] 
                 bg-cover bg-center bg-no-repeat
               "
             />
@@ -140,24 +348,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* POPULAR SKILLS (unchanged) */}
+      {/* POPULAR SKILLS - Clickable with filtering */}
       <section className="container mx-auto px-4 sm:px-6 md:px-8 mt-4 sm:mt-6 md:mt-8">
         <h2 className="text-center text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-800 mb-8 sm:mb-10 md:mb-12">
           Popular Skills
         </h2>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
           {categories.map((c, i) => (
             <motion.div
               key={i}
-              className="
+              onClick={() => setSelectedSkill(c.label === selectedSkill ? null : c.label)}
+              className={`
                 p-4 sm:p-5 md:p-7 lg:p-8 
                 bg-white rounded-2xl sm:rounded-3xl 
-                shadow-md border border-gray-200 
-                hover:shadow-2xl flex flex-col items-center 
-                cursor-pointer transition
-              "
+                shadow-md border cursor-pointer flex flex-col items-center 
+                transition-all duration-300
+                ${selectedSkill === c.label 
+                  ? "border-4 border-blue-600 shadow-2xl bg-blue-50 scale-105" 
+                  : "border-gray-200 hover:shadow-xl hover:border-gray-300"
+                }
+              `}
               whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
               <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-[#FFF6AA] rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow">
                 {React.cloneElement(c.icon, {
@@ -168,12 +381,73 @@ export default function Home() {
               <p className="text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-gray-800 text-center">
                 {c.label}
               </p>
+              {selectedSkill === c.label && (
+                <span className="mt-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                  {filteredWorkers.length} available
+                </span>
+              )}
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* SEARCH SECTION (unchanged) */}
+      {/* FILTERED WORKERS SECTION */}
+      {selectedSkill && filteredWorkers.length > 0 && (
+        <section className="container mx-auto px-4 sm:px-6 md:px-8 mt-12 mb-8">
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
+              Workers skilled in <span className="text-blue-600">"{selectedSkill}"</span>
+            </h3>
+            <motion.button
+              onClick={() => setSelectedSkill(null)}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-xl font-medium text-sm"
+              whileHover={{ scale: 1.05 }}
+            >
+              Clear Filter
+            </motion.button>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+            {filteredWorkers.map((worker) => (
+              <motion.div
+                key={worker.id}
+                className={`bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 text-center ${getBorderClass(worker.badgeColor)}`}
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
+                  {worker.emoji}
+                </div>
+                <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                  {worker.shortName}
+                </h3>
+                <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
+                  {worker.role}
+                </p>
+                <div className="flex flex-wrap items-center justify-center gap-2 mb-5 sm:mb-6">
+                  <span className="px-3 py-1 bg-green-200 text-green-800 rounded-full text-[10px] sm:text-xs md:text-sm">
+                    {worker.experienceLabel}
+                  </span>
+                  {worker.bisCertified && (
+                    <span className="px-3 py-1 bg-blue-100 text-blue-800 border border-blue-300 rounded-full text-[10px] sm:text-xs md:text-sm">
+                      BIS Certified
+                    </span>
+                  )}
+                </div>
+                <Link
+                  className="text-blue-600 font-medium text-xs sm:text-sm md:text-base underline hover:text-blue-800"
+                  to={`/workers/${worker.id}`}
+                >
+                  View Profile →
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* SEARCH SECTION */}
       <section className="mt-14 sm:mt-16 md:mt-24 container mx-auto px-4 sm:px-6 md:px-8">
         <motion.div
           className="
@@ -205,7 +479,8 @@ export default function Home() {
               <option>Plumbing</option>
               <option>Electrician</option>
               <option>Carpentry</option>
-              <option>Painting</option>
+              <option>Cooking</option>
+              <option>Babysitting</option>
             </motion.select>
 
             <motion.select
@@ -235,7 +510,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* TRUSTED WORKERS (uses data.json + routes /workers/:id) */}
+      {/* TRUSTED WORKERS */}
       <section className="mt-16 sm:mt-20 md:mt-24 pb-16 sm:pb-20 md:pb-24 container mx-auto px-4 sm:px-6 md:px-8">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-gray-800 mb-2 sm:mb-3">
           Trusted Local Workers
@@ -245,68 +520,44 @@ export default function Home() {
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-          {/* Ram card */}
-          {ram && (
+          {highlightedWorkers.map((worker, index) => (
             <motion.div
-              className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-orange-400 text-center"
+              key={worker.id}
+              className={`bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 text-center ${getBorderClass(worker.badgeColor)}`}
               whileHover={{ y: -5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
             >
               <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
-                {ram.emoji}
+                {worker.emoji}
               </div>
               <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                {ram.shortName}
+                {worker.shortName}
               </h3>
               <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
-                {ram.role}
+                {worker.role}
               </p>
               <div className="flex items-center justify-center gap-2 mb-5 sm:mb-6">
                 <span className="px-3 py-1 bg-green-200 text-green-800 rounded-full text-[10px] sm:text-xs md:text-sm">
-                  {ram.experienceLabel}
+                  {worker.experienceLabel}
                 </span>
-                {ram.bisCertified && (
+                {worker.bisCertified && (
                   <span className="px-3 py-1 bg-blue-100 text-blue-800 border border-blue-300 rounded-full text-[10px] sm:text-xs md:text-sm">
                     BIS Certified
                   </span>
                 )}
               </div>
               <Link
-                className="text-blue-600 font-medium text-xs sm:text-sm md:text-base underline"
-                to={`/workers/${ram.id}`}
+                className="text-blue-600 font-medium text-xs sm:text-sm md:text-base underline hover:text-blue-800"
+                to={`/workers/${worker.id}`}
               >
-                View Profile
+                View Profile →
               </Link>
             </motion.div>
-          )}
+          ))}
 
-          {/* Pooja card */}
-          {pooja && (
-            <motion.div
-              className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl border-t-4 border-blue-400 text-center"
-              whileHover={{ y: -5 }}
-            >
-              <div className="text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3">
-                {pooja.emoji}
-              </div>
-              <h3 className="text-base sm:text-lg md:text-xl font-bold">
-                {pooja.shortName}
-              </h3>
-              <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4">
-                {pooja.role}
-              </p>
-              <div className="px-3 py-1 bg-orange-200 text-orange-800 rounded-full text-[10px] sm:text-xs md:text-sm mb-5 sm:mb-6 inline-block">
-                {pooja.experienceLabel}
-              </div>
-              <Link
-                className="text-blue-600 font-medium text-xs sm:text-sm md:text-base underline"
-                to={`/workers/${pooja.id}`}
-              >
-                View Profile
-              </Link>
-            </motion.div>
-          )}
-
-          {/* CTA card stays same */}
+          {/* CTA card */}
           <motion.div
             className="bg-blue-50 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border-2 border-blue-300 border-dashed text-center"
             whileHover={{ scale: 1.05 }}
@@ -335,6 +586,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* AIAssistant Floating Icon and Chat */}
+      <AIAssistant />
     </div>
   );
 }
