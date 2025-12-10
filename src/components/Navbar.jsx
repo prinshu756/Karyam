@@ -12,7 +12,7 @@ export default function Navbar() {
 
   return (
     <motion.header
-      className="sticky top-0 z-40 w-full bg-white/95 shadow-sm backdrop-blur-sm"
+      className="fixed top-0 z-40 w-full bg-white/95 shadow-sm backdrop-blur-sm"
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ type: "spring", stiffness: 150, damping: 16 }}
@@ -20,7 +20,7 @@ export default function Navbar() {
       {/* main bar with reduced height */}
       <div className="container mx-auto flex items-center justify-between px-3 sm:px-4 py-2 sm:py-2.5">
         {/* Left: logo */}
-        <div className="flex items-center">
+        <div className="sticky flex items-center">
           <Link to="/" className="inline-flex items-center">
             <img
               src="src/assets/Karyam3.png"

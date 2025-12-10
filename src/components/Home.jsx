@@ -69,7 +69,7 @@ const AIAssistant = () => {
     {
       id: "1",
       text: "Hi! I'm Karyam AI 🤖 Ask me about workers or services! Try: 'plumber', 'cleaner', 'carpenter'",
-      isUser: True,
+      isUser: false,
       timestamp: new Date(),
     },
   ]);
