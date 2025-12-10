@@ -23,7 +23,7 @@ export default function Navbar() {
         <div className="sticky flex items-center">
           <Link to="/" className="inline-flex items-center">
             <img
-              src="Karyam3.webp"
+              src="/Karyam3.webp"
               alt="Karyam Logo"
               className="w-24 sm:w-28 h-auto"
             />
