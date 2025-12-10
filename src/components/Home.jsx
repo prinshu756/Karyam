@@ -274,7 +274,7 @@ export default function Home() {
               className="
                 absolute inset-0 
                 rounded-2xl sm:rounded-3xl 
-                bg-[url('src/assets/BgKaryam.jpg')] 
+                bg-[url('public/BgKaryam.jpg')] 
                 bg-cover bg-center bg-no-repeat
               "
             />
