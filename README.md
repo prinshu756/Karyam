@@ -1,16 +1,50 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Karyam is a job-matching platform designed to help uneducated and unskilled labourers find work easily, while enabling customers to quickly discover and hire local workers for their daily needs. It works like a simplified, accessible version of LinkedIn specifically built for labourers who may not be digitally literate.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Easy Labour Registration – Simple and accessible onboarding for uneducated workers.
+- Customer-Friendly Search – Users can easily find labourers based on skills, location, and availability.
+- Job Matching System – Connects workers with relevant job opportunities quickly.
+- Clean & Simple UI – Designed for clarity and accessibility.
+- Responsive Design – Works across mobile, tablet, and desktop.
+- Role-Based Experience – Separate flows for customers and labourers.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+## 🎯 Purpose
+
+Millions of labourers lack digital literacy and struggle to find work.  
+Karyam bridges this gap, giving them a simple, trustworthy platform to get hired—while making it convenient for customers to hire the right workers fast.
+
+
+## 🛠️ Tech Stack
+
+- Frontend: (React / HTML / CSS / JS or your actual tech stack)
+- Hosting: Netlify
+
+
+
+## 📌 How It Works
+ For Labourers
+1. Sign up with basic details (no technical skills needed).  
+2. Select your work type (plumber, painter, electrician, etc.).  
+3. Get discovered by customers in your area.  
+4. Receive job requests and start working.
+
+For Customers
+1. Search for labourers by skill or location.  
+2. View profiles and availability.  
+3. Contact or hire the worker instantly.  
+4. Get work done quickly and reliably.
+
+
+## 📦 Installation (For Developers)
+
+```bash
+git clone https://github.com/prinshu756/karyam.git
+cd karyam
+npm install
+npm start
